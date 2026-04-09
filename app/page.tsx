@@ -1,25 +1,5 @@
-import { AppShell } from "@/app/components/layout/AppShell";
-import { MetricsGrid } from "@/app/components/dashboard/MetricsGrid";
-import { TrendChartCard } from "@/app/components/dashboard/TrendChartCard";
-import { ActivityFeed } from "@/app/components/dashboard/ActivityFeed";
-import { SectionHeading } from "@/app/components/ui/SectionHeading";
+import { redirect } from "next/navigation";
 
 export default function DashboardPage() {
-  return (
-    <AppShell>
-      <SectionHeading
-        title="Engineering Overview"
-        description="Track delivery health, team performance, and delivery risks."
-      />
-
-      <div className="mt-6">
-        <MetricsGrid />
-      </div>
-
-      <div className="mt-6 grid grid-cols-1 gap-6 xl:grid-cols-[1.6fr_1fr]">
-        <TrendChartCard />
-        <ActivityFeed />
-      </div>
-    </AppShell>
-  );
+  redirect("/dashboard");
 }

@@ -1,10 +1,13 @@
-import { ButtonHTMLAttributes } from "react";
+import { ButtonHTMLAttributes, HTMLInputTypeAttribute } from "react";
 import { cn } from "@/app/lib/utils";
 
 type ButtonVariant = "primary" | "secondary" | "ghost";
 
+type ButtonType = "submit" | "button";
+
 type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   variant?: ButtonVariant;
+  type?: ButtonType;
 };
 
 const variants: Record<ButtonVariant, string> = {
@@ -16,10 +19,12 @@ const variants: Record<ButtonVariant, string> = {
 export function Button({
   className,
   variant = "primary",
+  type = "button",
   ...props
 }: ButtonProps) {
   return (
     <button
+      type={type}
       className={cn(
         "inline-flex h-10 items-center justify-center rounded-lg px-4 text-sm font-medium transition-colors",
         variants[variant],

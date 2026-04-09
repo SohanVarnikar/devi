@@ -1,4 +1,5 @@
 import { ReactNode } from "react";
+import Link from "next/link";
 
 interface NavItem {
   label: string;
@@ -34,8 +35,10 @@ export function Sidebar({ logo = "DEVI", items }: SidebarProps) {
       {/* Nav items */}
       <nav className="flex-1 py-2">
         {items.map((item) => (
-          <div
+          <Link
             key={item.href}
+            href={item.href}
+            aria-current={item.isActive ? "page" : undefined}
             className="flex items-center gap-3 px-4 py-3 text-xs font-bold tracking-widest uppercase cursor-pointer transition-colors relative"
             style={{
               fontFamily: "var(--font-mono)",
@@ -56,7 +59,7 @@ export function Sidebar({ logo = "DEVI", items }: SidebarProps) {
               {item.icon}
             </span>
             {item.label}
-          </div>
+          </Link>
         ))}
       </nav>
     </div>

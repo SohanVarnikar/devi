@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 type AvatarProps = {
   name: string;
   src?: string;
@@ -19,10 +21,11 @@ export function Avatar({ name, src, size = "md" }: AvatarProps) {
     .toUpperCase();
 
   return src ? (
-    // TODO: Investigate waring about: Using `<img>` could result in slower LCP and higher bandwidth
-    <img
+    <Image
       src={src}
       alt={name}
+      width={48}
+      height={48}
       className={`${sizeMap[size]} rounded-full object-cover`}
     />
   ) : (

@@ -6,7 +6,10 @@ export function AppHeader() {
     <header className="sticky top-0 z-20 border-b border-white/10 bg-[#020817]/80 backdrop-blur">
       <div className="flex h-16 items-center justify-between gap-4 px-4 lg:px-6">
         <div className="w-full max-w-md">
-          <Input placeholder="Search metrics, teams, pull requests..." />
+          <Input
+            aria-label="Search"
+            placeholder="Search metrics, teams, pull requests..."
+          />
         </div>
         <div className="flex items-center gap-3">
           <div className="hidden text-right sm:block">

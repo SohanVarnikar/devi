@@ -12,6 +12,12 @@ const sizeMap = {
   lg: "h-12 w-12 text-base",
 };
 
+const sizePixels = {
+  sm: 32,
+  md: 40,
+  lg: 48,
+};
+
 export function Avatar({ name, src, size = "md" }: AvatarProps) {
   const initials = name
     .split(" ")
@@ -20,12 +26,14 @@ export function Avatar({ name, src, size = "md" }: AvatarProps) {
     .slice(0, 2)
     .toUpperCase();
 
+  const imageSize = sizePixels[size];
+
   return src ? (
     <Image
       src={src}
       alt={name}
-      width={48}
-      height={48}
+      width={imageSize}
+      height={imageSize}
       className={`${sizeMap[size]} rounded-full object-cover`}
     />
   ) : (

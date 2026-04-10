@@ -1,13 +1,10 @@
-import { ButtonHTMLAttributes, HTMLInputTypeAttribute } from "react";
+import { ButtonHTMLAttributes } from "react";
 import { cn } from "@/app/lib/utils";
 
 type ButtonVariant = "primary" | "secondary" | "ghost";
 
-type ButtonType = "submit" | "button";
-
 type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   variant?: ButtonVariant;
-  type?: ButtonType;
 };
 
 const variants: Record<ButtonVariant, string> = {

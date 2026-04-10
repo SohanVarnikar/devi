@@ -32,6 +32,7 @@ export function AppSidebar() {
               <Link
                 key={item.href}
                 href={item.href}
+                aria-current={active ? "page" : undefined}
                 className={cn(
                   "flex h-10 items-center rounded-lg px-3 text-sm transition-colors",
                   active

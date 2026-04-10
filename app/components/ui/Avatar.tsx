@@ -40,6 +40,7 @@ export function Avatar({ name, src, size = "md" }: AvatarProps) {
     <div
       className={`${sizeMap[size]} flex items-center justify-center rounded-full bg-white/10 text-slate-200`}
       aria-label={name}
+      role="img"
     >
       {initials}
     </div>

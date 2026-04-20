@@ -9,11 +9,7 @@ type AssistantBubbleProps = {
 
 export function AssistantBubble({ message }: AssistantBubbleProps) {
   return (
-    <div
-      className="flex items-start gap-3"
-      role="article"
-      aria-label="AI assistant response"
-    >
+    <div className="flex items-start gap-3" role="article">
       {/* Bot avatar */}
       <div
         aria-hidden="true"

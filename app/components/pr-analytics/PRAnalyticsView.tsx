@@ -72,7 +72,7 @@ export function PRAnalyticsView({
           </p>
         ) : (
           <div
-            role="img"
+            role="group"
             aria-label="Bar chart showing cycle time and review time in hours per author"
             className="mt-4 flex h-72 items-end justify-around gap-5 border-t border-white/5 pt-6"
           >
@@ -126,7 +126,10 @@ export function PRAnalyticsView({
           <SectionHeading
             title="Recent Repository Activity"
             action={
-              <button className="text-[10px] uppercase tracking-[0.16em] text-cyan-300 transition-colors hover:text-cyan-200">
+              <button
+                type="button"
+                className="text-[10px] uppercase tracking-[0.16em] text-cyan-300 transition-colors hover:text-cyan-200"
+              >
                 Filter
               </button>
             }

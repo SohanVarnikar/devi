@@ -9,7 +9,7 @@ const navItems = [
   { label: "AI Assist", href: "/ai-assist" },
   { label: "Team Health", href: "/team-health" },
   { label: "PR Analytics", href: "/pr-analytics" },
-  { label: "Perf Lab", href: "/perf-lab" },
+  { label: "Onboarding", href: "/onboarding" },
 ];
 
 export function AppSidebar() {

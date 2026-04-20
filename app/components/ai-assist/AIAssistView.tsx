@@ -18,7 +18,10 @@ export function AIAssistView({
   data = aiAssistData,
   className,
 }: AIAssistViewProps) {
-  const queryPct = Math.min((data.queriesUsed / data.queriesTotal) * 100, 100);
+  const queryPct =
+    data.queriesTotal > 0
+      ? Math.max(0, Math.min((data.queriesUsed / data.queriesTotal) * 100, 100))
+      : 0;
 
   return (
     <section
@@ -79,8 +82,8 @@ export function AIAssistView({
           aria-label="Session status"
           className="flex items-center justify-between text-[10px] uppercase tracking-[0.14em] text-slate-600"
         >
-          <span>{data.statusLeft}</span>
-          <div className="flex items-center gap-2">
+          <span className="min-w-0 flex-1 truncate">{data.statusLeft}</span>
+          <div className="shrink-0 flex items-center gap-2">
             <span
               aria-label={`${data.queriesUsed} of ${data.queriesTotal} queries used`}
             >

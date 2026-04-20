@@ -46,9 +46,9 @@ export function AssistantBubble({ message }: AssistantBubbleProps) {
                 <dd className="mt-1 text-xl font-semibold tracking-tight text-cyan-300">
                   {m.value}
                 </dd>
-                <p className="mt-0.5 text-[9px] uppercase tracking-[0.14em] text-slate-500">
+                <dd className="mt-0.5 text-[9px] uppercase tracking-[0.14em] text-slate-500">
                   {m.sublabel}
-                </p>
+                </dd>
               </div>
             ))}
           </dl>

@@ -16,12 +16,10 @@ export function PRAnalyticsView({
   data = prAnalyticsData,
   className,
 }: PRAnalyticsViewProps) {
-  const maxBar = data.velocity.length
-    ? Math.max(
-        1,
-        ...data.velocity.map((v) => Math.max(v.cycleHours, v.reviewHours)),
-      )
-    : 1;
+  const maxBar = data.velocity.reduce((max, item) => {
+    const localMax = Math.max(item.cycleHours, item.reviewHours);
+    return Math.max(max, localMax);
+  }, 1);
 
   return (
     <section className={cn("space-y-6", className)}>

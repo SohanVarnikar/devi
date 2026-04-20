@@ -1,7 +1,8 @@
 import { Badge } from "@/app/components/ui/Badge";
+import { type PullRequestStatus } from "@/app/components/pr-analytics/data";
 
 type StatusBadgeProps = {
-  status: "merged" | "review" | "stalled";
+  status: PullRequestStatus;
 };
 
 const statusMap: Record<

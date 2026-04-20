@@ -11,6 +11,8 @@ export type AuthorVelocity = {
   reviewHours: number;
 };
 
+export type PullRequestStatus = "merged" | "review" | "stalled";
+
 export type PullRequestRow = {
   id: string;
   title: string;
@@ -18,7 +20,7 @@ export type PullRequestRow = {
   authorName: string;
   cycle: string;
   review: string;
-  status: "merged" | "review" | "stalled";
+  status: PullRequestStatus;
 };
 
 export type PRAnalyticsData = {

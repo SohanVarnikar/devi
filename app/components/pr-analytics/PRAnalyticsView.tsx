@@ -16,9 +16,12 @@ export function PRAnalyticsView({
   data = prAnalyticsData,
   className,
 }: PRAnalyticsViewProps) {
-  const maxBar = Math.max(
-    ...data.velocity.map((v) => Math.max(v.cycleHours, v.reviewHours)),
-  );
+  const maxBar = data.velocity.length
+    ? Math.max(
+        1,
+        ...data.velocity.map((v) => Math.max(v.cycleHours, v.reviewHours)),
+      )
+    : 1;
 
   return (
     <section className={cn("space-y-6", className)}>
@@ -63,25 +66,59 @@ export function PRAnalyticsView({
           title="Cycle vs Review Time by Author"
           description="Distribution of engineering velocity across core repos."
         />
-        <div className="mt-4 flex h-72 items-end justify-around gap-5 border-t border-white/5 pt-6">
-          {data.velocity.map((item) => (
-            <div key={item.author} className="flex flex-col items-center gap-3">
-              <div className="flex items-end gap-2">
-                <div
-                  className="w-4 bg-cyan-400/85"
-                  style={{ height: `${(item.cycleHours / maxBar) * 180}px` }}
-                />
-                <div
-                  className="w-4 bg-emerald-300/80"
-                  style={{ height: `${(item.reviewHours / maxBar) * 180}px` }}
-                />
+        {data.velocity.length === 0 ? (
+          <p className="mt-4 text-sm text-slate-500">
+            No velocity data available.
+          </p>
+        ) : (
+          <div
+            role="img"
+            aria-label="Bar chart showing cycle time and review time in hours per author"
+            className="mt-4 flex h-72 items-end justify-around gap-5 border-t border-white/5 pt-6"
+          >
+            {data.velocity.map((item) => (
+              <div
+                key={item.author}
+                role="group"
+                aria-label={item.author}
+                className="flex flex-col items-center gap-3"
+              >
+                <div className="flex items-end gap-2">
+                  <div
+                    role="meter"
+                    aria-label={`${item.author} cycle time`}
+                    aria-valuenow={item.cycleHours}
+                    aria-valuemin={0}
+                    aria-valuemax={maxBar}
+                    aria-valuetext={`${item.cycleHours} hours`}
+                    className="w-4 bg-cyan-400/85"
+                    style={{
+                      height: `${Math.min((item.cycleHours / maxBar) * 180, 180)}px`,
+                    }}
+                  />
+                  <div
+                    role="meter"
+                    aria-label={`${item.author} review time`}
+                    aria-valuenow={item.reviewHours}
+                    aria-valuemin={0}
+                    aria-valuemax={maxBar}
+                    aria-valuetext={`${item.reviewHours} hours`}
+                    className="w-4 bg-emerald-300/80"
+                    style={{
+                      height: `${Math.min((item.reviewHours / maxBar) * 180, 180)}px`,
+                    }}
+                  />
+                </div>
+                <span
+                  aria-hidden="true"
+                  className="text-[10px] uppercase tracking-[0.16em] text-slate-400"
+                >
+                  {item.author}
+                </span>
               </div>
-              <span className="text-[10px] uppercase tracking-[0.16em] text-slate-400">
-                {item.author}
-              </span>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        )}
       </Card>
 
       <Card className="rounded-none p-0">
@@ -98,13 +135,27 @@ export function PRAnalyticsView({
 
         <div className="overflow-x-auto">
           <table className="min-w-full text-left">
+            <caption className="sr-only">
+              Recent repository pull request activity showing cycle time, review
+              time, and merge status per author
+            </caption>
             <thead>
               <tr className="border-b border-white/10 text-[10px] uppercase tracking-[0.16em] text-slate-500">
-                <th className="px-5 py-3 font-medium">Pull Request</th>
-                <th className="px-5 py-3 font-medium">Author</th>
-                <th className="px-5 py-3 font-medium">Cycle</th>
-                <th className="px-5 py-3 font-medium">Review</th>
-                <th className="px-5 py-3 font-medium">Status</th>
+                <th scope="col" className="px-5 py-3 font-medium">
+                  Pull Request
+                </th>
+                <th scope="col" className="px-5 py-3 font-medium">
+                  Author
+                </th>
+                <th scope="col" className="px-5 py-3 font-medium">
+                  Cycle
+                </th>
+                <th scope="col" className="px-5 py-3 font-medium">
+                  Review
+                </th>
+                <th scope="col" className="px-5 py-3 font-medium">
+                  Status
+                </th>
               </tr>
             </thead>
             <tbody>
